@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4288febc-cf7d-4b4c-bf30-326b46784218" name="Changes" comment="">
+    <list default="true" id="4288febc-cf7d-4b4c-bf30-326b46784218" name="Changes" comment="General methods tested">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coen6717/A1/queue/QueueJUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/coen6717/A1/queue/QueueJUnitTest.java" afterDir="false" />
     </list>
@@ -22,13 +22,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jed/Downloads/src(2)/src&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Jed/Downloads/src(2)/src",
+    "settings.editor.selected.configurable": "coverage"
   }
-}</component>
+}]]></component>
+  <component name="RunManager" selected="JUnit.QueueJUnitTest">
+    <configuration name="QueueJUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="coen448" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="coen448.coen6717.A1.queue.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="coen448.coen6717.A1.queue" />
+      <option name="MAIN_CLASS_NAME" value="coen448.coen6717.A1.queue.QueueJUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QueueJUnitTest.testLQueueEnqueueDequeueBCC_T2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="coen448" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="coen448.coen6717.A1.queue.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="coen448.coen6717.A1.queue" />
+      <option name="MAIN_CLASS_NAME" value="coen448.coen6717.A1.queue.QueueJUnitTest" />
+      <option name="METHOD_NAME" value="testLQueueEnqueueDequeueBCC_T2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.QueueJUnitTest" />
+        <item itemvalue="JUnit.QueueJUnitTest.testLQueueEnqueueDequeueBCC_T2" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -38,6 +78,37 @@
       <option name="presentableId" value="Default" />
       <updated>1676231950597</updated>
     </task>
+    <task id="LOCAL-00001" summary="General methods tested">
+      <created>1676585907641</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676585907641</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="General methods tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="General methods tested" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/coen448$QueueJUnitTest_testLQueueEnqueueDequeueBCC_T2.ic" NAME="QueueJUnitTest.testLQueueEnqueueDequeueBCC_T2 Coverage Results" MODIFIED="1676588161423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>coen448.coen6717.A1.queue.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/coen448$QueueJUnitTest.ic" NAME="QueueJUnitTest Coverage Results" MODIFIED="1676589064183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>coen448.coen6717.A1.queue.*</FILTER>
+    </SUITE>
   </component>
 </project>
