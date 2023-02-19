@@ -96,7 +96,7 @@ class QueueJUnitTest {
 
 	/** AQueue ECC **/
 	/*
-	 Test 1: (null,true,0)
+	 Test 1: (Not defined, -, -, -, -)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
 		 Test input data : < null >
@@ -106,61 +106,93 @@ class QueueJUnitTest {
 	 */
 	@Test
 	public void testAQueueEnqueueDequeueECC_T1() {
-		Q1.clear(); //0
-		Q1 = null; //null
+		Q1 = null;
 		assertThrows(NullPointerException.class, ()-> Q1.enqueue(null));
 		assertThrows(NullPointerException.class, ()-> Q1.dequeue());
 	}
 
 	/*
-	 Test 2: (empty,false,1)
+	 Test 2: (Empty, < -1, Null, False, False)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
-		 Test input data : < 10 >
+		 Test input data : < -3 >
 		 Test type : functional, blackbox
-		 Description : Empty queue is capable of enqueuing/dequeuing non-null value
-		 Expected output < 10 >
+		 Description : Empty queue with negative size can't enqueue or dequeue
+		 Expected output < NegativeArraySizeException >
 	 */
 	@Test
 	public void testAQueueEnqueueDequeueECC_T2() {
-		Q1.clear();
-		Q1.enqueue(10);
-		assertEquals("< 10 >", Q1.toString());
-		assertEquals(10, Q1.dequeue());
+		// Initializes -1 size array
+		assertThrows(NegativeArraySizeException.class,
+				() -> new AQueue(-3));
 	}
 
 	/*
-	 Test 3: (At least one element,false,>1)
+	 Test 3: (Empty, -1, Null, False, False)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
-		 Test input data : < 1 10 >
+		 Test input data : < null >
 		 Test type : functional, blackbox
-		 Description : Queue with at least one element is capable of enqueuing/dequeuing a non-null value
-		 Expected output < 1 10 >
+		 Description : Queue with size 0 can't enqueue or dequeue
+		 Expected output < Arithmetic Error >
 	*/
 	@Test
 	public void testAQueueEnqueueDequeueECC_T3() {
-		Q1.clear();
+		Q1 = new AQueue<>(-1);
+
+		// Division by 0 error (maxSize = 0)
+		assertThrows(ArithmeticException.class, () -> Q1.enqueue(null));
+		assertThrows(ArithmeticException.class, () -> Q1.dequeue());
+	}
+
+	/*
+	 Test 4: (Not empty, 0, Null, False, True)
+		 Tester : Nicholas Kawwas
+		 Date : February 18th 2022
+		 Test input data : < null >
+		 Test type : functional, blackbox
+		 Description : Queue with size 1 can enqueue but can't dequeue
+		 Expected output < Assertion Error >
+	*/
+	@Test
+	public void testAQueueEnqueueDequeueECC_T4() {
+		Q1 = new AQueue<>(0);
+		Q1.enqueue(null);
+		assertThrows(AssertionError.class, () -> Q1.dequeue());
+	}
+
+	/*
+	 Test 5: (Full, 0, Null, True, False)
+		 Tester : Nicholas Kawwas
+		 Date : February 18th 2022
+		 Test input data : < 1 2 3>
+		 Test type : functional, blackbox
+		 Description : Full queue with size 2 can dequeue but can't enqueue
+		 Expected output < Assertion Error 1 >
+	*/
+	@Test
+	public void testAQueueEnqueueDequeueECC_T5() {
+		Q1 = new AQueue<>(2);
 		Q1.enqueue(1);
-		assertEquals("< 1 >", Q1.toString());
-		Q1.enqueue(10);
-		assertEquals("< 1 10 >", Q1.toString());
+		Q1.enqueue(2);
+		assertThrows(AssertionError.class, () -> Q1.enqueue(3));
 		assertEquals(1, Q1.dequeue());
 	}
 
 	/** AQueue BCC **/
 	/*
-	 Test 1 : (At least one element, false, >1)
+	 Test 1 : (Not empty, >=1, Non-null value, True, True)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
-		 Test input data : < 1 10 >
+		 Test input data : < 1, 10 >
 		 Test type : functional, blackbox
 		 Description : Queue with one element can enqueue and dequeue regular non-null values
 		 Expected output < 1 10 >
 	 */
 	@Test
 	public void testAQueueEnqueueDequeueBCC_T1() {
-		Q1.clear();
+		Q1 = new AQueue<>(3);
+
 		Q1.enqueue(1);
 		assertEquals("< 1 >", Q1.toString());
 		Q1.enqueue(10);
@@ -170,108 +202,163 @@ class QueueJUnitTest {
 
 
 	/*
-	 Test 2 : (null, false, >1)
+	 Test 2 : (Empty, >=1, Non-null value, True, True)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
-		 Test input data : < 1 2 null >
+		 Test input data : < 1, 2 >
 		 Test type : functional, blackbox
-		 Description : Null queue that had multiple elements before being declared null throws a null pointer exception when enqueuing/dequeueing a null value
-		 Expected output < Exception Exception >
+		 Description : Empty queue that can enqueue and dequeue valid, non-null values
+		 Expected output: < 1 2 >
 	 */
 	@Test
 	public void testAQueueEnqueueDequeueBCC_T2() {
-		Q1.clear();
+		Q1 = new AQueue<>(3);
+
 		Q1.enqueue(1);
+		assertEquals("< 1 >", Q1.toString());
 		Q1.enqueue(2);
 		assertEquals("< 1 2 >", Q1.toString());
-		Q1 = null;
-		assertThrows(NullPointerException.class,
-				()-> Q1.enqueue(null));
-		assertThrows(NullPointerException.class,
-				()-> Q1.dequeue());
+		assertEquals(1, Q1.dequeue());
 	}
 
-
 	/*
-	 Test 3 : (empty, false, >1)
+	 Test 3 : (Full, >=1, Non-null value, True, True)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
-		 Test input data : < 1 2 1 10 >
+		 Test input data : < 1 2 3 >
 		 Test type : functional, blackbox
-		 Description : Emptied queue that had multiple elements previously is capable of enqueuing/dequeuing non-null value
-		 Expected output < 1 2 1 10 >
+		 Description : Full queue that can enqueue/dequeue non-null value
+		 Expected output < 1 >
 	 */
 	@Test
 	public void testAQueueEnqueueDequeueBCC_T3() {
+		Q1 = new AQueue<>(2);
 		Q1.enqueue(1);
 		Q1.enqueue(2);
-		assertEquals("< 1 2 >", Q1.toString());
-		Q1.clear();
-		Q1.enqueue(1);
-		assertEquals("< 1 >", Q1.toString());
-		Q1.enqueue(10);
-		assertEquals("< 1 10 >", Q1.toString());
+		assertThrows(AssertionError.class,
+				()-> Q1.enqueue(3));
 		assertEquals(1, Q1.dequeue());
 	}
 
 	/*
-	 Test 4 : (At least one element, true, >1)
+	 Test 4 : (Not empty, 0, Non-null value, True, True)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
-		 Test input data : < null 1 2 >
+		 Test input data : < 5 4 >
 		 Test type : functional, blackbox
-		 Description : Queue can enqueue non-null values and null value, and then dequeue the null value
-		 Expected output < null >
+		 Description : Not empty queue with size 0 that can enqueue and dequeue non-null values
+		 Expected output < 5 >
 	 */
 	@Test
 	public void testAQueueEnqueueDequeueBCC_T4() {
-		Q1.enqueue(null);
-		assertEquals("< null >", Q1.toString());
-		Q1.enqueue(1);
-		Q1.enqueue(2);
-		assertNull(Q1.dequeue());
+		Q1 = new AQueue<>(0);
+
+		// Can enqueue by nothing is added
+		Q1.enqueue(5);
+
+		// Queue is Empty
+		assertThrows(AssertionError.class,
+				()-> Q1.dequeue());
 	}
 
 	/*
-	 Test 5 : (At least one element, false, 0)
+	 Test 5 : (Not empty, -1, Non-null value, True, True)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
-		 Test input data : < 1 2 >
+		 Test input data : < -1 2 >
 		 Test type : functional, blackbox
-		 Description : Empty queue with no elements can enqueue non-null values
-		 Expected output < 1 2 >
+		 Description : Not empty queue with size 0 can enqueue and dequeue non-null values
+		 Expected output < Arithemtic Exception >
 	 */
 	@Test
 	public void testAQueueEnqueueDequeueBCC_T5() {
-		Q1.clear();
-		Q1.enqueue(1);
-		Q1.enqueue(2);
-		assertEquals("< 1 2 >", Q1.toString());
-		assertEquals(1, Q1.dequeue());
+		Q1 = new AQueue<>(-1);
+
+		// Division by zero
+		assertThrows(ArithmeticException.class,
+				() -> Q1.enqueue(2));
+		assertThrows(ArithmeticException.class,
+				()-> Q1.dequeue());
 	}
 
 	/*
-	 Test 6 : (At least one element, false, 1)
+	 Test 6 : (Not empty, <-1, Non-null value, True, True)
 		 Tester : Nicholas Kawwas
 		 Date : February 18th 2022
-		 Test input data : < 1 2 5 >
+		 Test input data : < -2 >
 		 Test type : functional, blackbox
-		 Description : Queue with one element already can enqueue and dequeue more non-null elements
-		 Expected output < 1 2 5 >
+		 Description : Queue initialized with negative size
+		 Expected output < Negative Array Size Exception >
 	 */
 	@Test
 	public void testAQueueEnqueueDequeueBCC_T6() {
-		Q1.enqueue(1);
-		assertEquals("< 1 >", Q1.toString());
-		Q1.enqueue(2);
-		Q1.enqueue(5);
-		assertEquals("< 1 2 5 >", Q1.toString());
-		assertEquals(1, Q1.dequeue());
-		assertEquals(2, Q1.dequeue());
-		assertEquals(5, Q1.dequeue());
-
+		// Initializes -1 size array
+		assertThrows(NegativeArraySizeException.class,
+				() -> new AQueue(-2));
 	}
 
+	/*
+	 Test 7 : (Not empty, >=1, Null, True, True)
+		 Tester : Nicholas Kawwas
+		 Date : February 18th 2022
+		 Test input data : < 3 null null >
+		 Test type : functional, blackbox
+		 Description : Queue with one element can enqueue and dequeue null elements
+		 Expected output < null >
+	 */
+	@Test
+	public void testAQueueEnqueueDequeueBCC_T7() {
+		Q1 = new AQueue<>(3);
+		Q1.enqueue(null);
+
+		Q1.enqueue(null);
+		assertEquals(null, Q1.dequeue());
+	}
+
+	/*
+	 Test 8 : (Not empty, >=1, Non-null value, False, True)
+		 Tester : Nicholas Kawwas
+		 Date : February 18th 2022
+		 Test input data : < 3 1 2 3 4 5 >
+		 Test type : functional, blackbox
+		 Description : Queue with one element that dequeues and enqueues until full
+		 Expected output < 1 Assertion Error >
+	 */
+	@Test
+	public void testAQueueEnqueueDequeueBCC_T8() {
+		Q1 = new AQueue<>(3);
+		Q1.enqueue(1);
+
+		assertEquals(1, Q1.dequeue());
+		Q1.enqueue(2);
+		Q1.enqueue(3);
+		Q1.enqueue(4);
+
+		// Queue is full
+		assertThrows(AssertionError.class, () -> Q1.enqueue(5));
+	}
+
+	/*
+	 Test 9 : (Not empty, >=1, Non-null value, True, False)
+		 Tester : Nicholas Kawwas
+		 Date : February 18th 2022
+		 Test input data : < 3 2 3 >
+		 Test type : functional, blackbox
+		 Description : Queue with one element that enqueues another non-null value then dequeues until it is empty
+		 Expected output < 2 Assertion Error >
+	 */
+	@Test
+	public void testAQueueEnqueueDequeueBCC_T9() {
+		Q1 = new AQueue<>(3);
+		Q1.enqueue(2);
+
+		Q1.enqueue(3);
+		assertEquals(2, Q1.dequeue());
+		assertEquals(3, Q1.dequeue());
+
+		// Queue is empty
+		assertThrows(AssertionError.class, () -> Q1.dequeue());
+	}
 
 
 	/** LQueue Implementation
